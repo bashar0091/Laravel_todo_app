@@ -7,15 +7,12 @@ use App\Models\Todo_list;
 
 class TodoController extends Controller
 {
-    //frontpage show controller
-    public function index() {
-        return view('index');
-    }
-
+    
     public function addIndex() {
         return view('todoAdd');
     }
 
+    // todo data save function 
     public function save(Request $request) {
         $validation = $request->validate([
             'taskName' => 'required',
@@ -25,6 +22,22 @@ class TodoController extends Controller
         ]);
         
         $todoList = new Todo_list;
+        $todoList->task_name = $request->taskName;
+        $todoList->assign_to = $request->assignTo;
+        $todoList->due_date = $request->dueDate;
+        $todoList->status = $request->status;
+        $todoList->save();
 
+        return redirect('/');
+    }
+
+    //frontpage show with data function
+    public function index() {
+
+        $todoListShow = Todo_list::all();
+
+        $data = compact('todoListShow');
+
+        return view('index')->with($data);
     }
 }

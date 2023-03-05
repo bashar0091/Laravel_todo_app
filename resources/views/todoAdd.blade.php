@@ -24,6 +24,7 @@
                     <div class="form-group">
                         <label for="assignToId">Assign to</label>
                         <select name="assignTo" id="assignToId" class="form-control">
+                            <option value="">Select an item</option>
                             <option value="bashar">Bashar</option>
                             <option value="tony">Tony</option>
                             <option value="rony">Rony</option>
@@ -44,6 +45,7 @@
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select name="status" id="status" class="form-control">
+                            <option value="">Select an item</option>
                             <option value="pending">Pending</option>
                             <option value="inprogress">In Progress</option>
                             <option value="complete">Complete</option>
