@@ -22,3 +22,4 @@ Route::get('/', [TodoController::class, 'index']);
 // todo list add route 
 Route::get('/todo/add', [TodoController::class, 'addIndex'])->name('todo.add');
 Route::post('/todo/add', [TodoController::class, 'save']);
+Route::get('/todo/delete/{id}', [TodoController::class, 'destroy']);

@@ -46,7 +46,7 @@
                                 </td>
                                 <td>
                                     <a href="" class="btn btn-sm btn-success">Edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                    <a href="{{url('todo/delete')}}/{{$todoList->id}}" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

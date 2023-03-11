@@ -40,4 +40,12 @@ class TodoController extends Controller
 
         return view('index')->with($data);
     }
+
+    public function destroy($id) {
+        $todoListShow = Todo_list::find($id);
+
+        $todoListShow->delete();
+
+        return redirect('/');
+    }
 }
