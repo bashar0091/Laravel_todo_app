@@ -23,24 +23,25 @@
           </tr>
         </thead>
         <tbody>
+          @foreach( $todoView as $todo)
           <tr>
-            <th scope="row">1</th>
-            <th>Wordpress Fixup</th>
-            <td>Wordpress</td>
-            <td>Ongoing</td>
-            <td>Tommy</td>
-            <td>High</td>
-            <td>9/11/23</td>
-            <td>10/11/23</td>
-            <td>John</td>
-            <td>Skype</td>
+            <th scope="row">{{$todo->id}}</th>
+            <th>{{$todo->task_name}}</th>
+            <td>{{$todo->task_category}}</td>
+            <td>{{$todo->task_status}}</td>
+            <td>{{$todo->task_assign}}</td>
+            <td>{{$todo->task_priority}}</td>
+            <td>{{$todo->created_at}}</td>
+            <td>{{$todo->task_due}}</td>
+            <td>{{$todo->task_cuName}}</td>
+            <td>{{$todo->task_mediaSource}}</td>
             <td>N/A</td>
             <td>
-                <a href="">View</a>
-                <a href="">Edit</a>
-                <a href="">Delete</a>
+                <a href="{{route('data.update', ['id' => $todo->id])}}">Edit</a>
+                <a href="{{route('data.delete', ['id' => $todo->id])}}">Delete</a>
             </td>
           </tr>
+          @endforeach
         </tbody>
     </table>
 </div>

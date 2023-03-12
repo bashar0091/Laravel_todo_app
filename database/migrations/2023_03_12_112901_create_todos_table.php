@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
+            $table->string('task_name');
+            $table->string('task_category');
+            $table->string('task_status');
+            $table->string('task_assign');
+            $table->string('task_priority');
+            $table->string('task_due');
+            $table->string('task_cuName');
+            $table->string('task_mediaSource');
             $table->timestamps();
         });
     }

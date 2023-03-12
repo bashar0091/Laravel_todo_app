@@ -3,14 +3,14 @@
 
 @section('main-section')
 <div class="container">
-    <h2 class="text-center">Create New Todo</h2>
+    <h2 class="text-center">{{$title}}</h2>
 
-    <form action="{{route('data.store')}}">
+    <form action="{{route('data.store')}}" method="post">
         @csrf
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="taskName">Task Name *</label>
-            <input type="text" class="form-control" id="taskName" name="task_name" placeholder="Task Name Here">
+            <input type="text" class="form-control" id="taskName" name="task_name" value="{{$taskName}}" placeholder="Task Name Here">
             @error('task_name')
                 <span class="text-danger">{{$message}}</span>
             @enderror
@@ -19,9 +19,9 @@
             <label for="category">Category *</label>
             <select class="custom-select" id="category" name="task_category">
                 <option value="">Select Category</option>
-                <option value="wp">Wordpress</option>
-                <option value="laravel">Laravel</option>
-                <option value="mern">MERN</option>
+                <option value="wp" {{old('task_category') == 'wp' ? 'selected' : ''}}>Wordpress</option>
+                <option value="laravel" {{old('task_category') == 'laravel' ? 'selected' : ''}}>Laravel</option>
+                <option value="mern" {{old('task_category') == 'mern' ? 'selected' : ''}}>MERN</option>
             </select>
             @error('task_category')
                 <span class="text-danger">{{$message}}</span>
@@ -45,9 +45,9 @@
             <label for="assign">Assigned *</label>
             <select class="custom-select" id="assign" name="task_assign">
                 <option value="">Select Member</option>
-                <option value="tommy">Tommy</option>
-                <option value="bobby">Bobby</option>
-                <option value="yonny">Yonny</option>
+                <option value="tommy" {{old('task_assign') == 'tommy' ? 'selected' : ''}}>Tommy</option>
+                <option value="bobby" {{old('task_assign') == 'bobby' ? 'selected' : ''}}>Bobby</option>
+                <option value="yonny" {{old('task_assign') == 'yonny' ? 'selected' : ''}}>Yonny</option>
             </select>
             @error('task_assign')
                 <span class="text-danger">{{$message}}</span>
@@ -59,9 +59,9 @@
           <div class="form-group col-md-6">
             <label for="priority">Priority *</label>
             <select class="custom-select" id="priority" name="task_priority">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+                <option value="low" {{old('task_priority') == 'low' ? 'selected' : ''}}>Low</option>
+                <option value="medium" {{old('task_priority') == 'medium' ? 'selected' : ''}}>Medium</option>
+                <option value="high" {{old('task_priority') == 'high' ? 'selected' : ''}}>High</option>
             </select>
             @error('task_priority')
                 <span class="text-danger">{{$message}}</span>
@@ -70,7 +70,7 @@
 
           <div class="form-group col-md-6">
             <label for="dueDate">Due Date *</label>
-            <input type="date" class="form-control" id="dueDate" name="task_due">
+            <input type="date" class="form-control" id="dueDate" value="{{old('task_due')}}" name="task_due">
             @error('task_due')
                 <span class="text-danger">{{$message}}</span>
             @enderror
@@ -80,7 +80,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="customerName">Customer Name *</label>
-            <input type="text" class="form-control" id="customerName" name="task_cuName" placeholder="Enter Customer Name">
+            <input type="text" class="form-control" id="customerName" name="task_cuName" value="{{$cuName}}" placeholder="Enter Customer Name">
             @error('task_cuName')
                 <span class="text-danger">{{$message}}</span>
             @enderror
@@ -89,10 +89,11 @@
             <label for="mediaSource">Media Source *</label>
             <select class="custom-select" id="mediaSource" name="task_mediaSource">
                 <option value="">Select Media Source</option>
-                <option value="wapp">Whatsapp</option>
-                <option value="linkedin">Linkedin</option>
-                <option value="skype">Skype</option>
+                <option value="wapp" {{old('task_mediaSource') == 'wapp' ? 'selected' : ''}}>Whatsapp</option>
+                <option value="linkedin" {{old('task_mediaSource') == 'linkedin' ? 'selected' : ''}}>Linkedin</option>
+                <option value="skype" {{old('task_mediaSource') == 'skype' ? 'selected' : ''}}>Skype</option>
             </select>
+
             @error('task_mediaSource')
                 <span class="text-danger">{{$message}}</span>
             @enderror
@@ -100,11 +101,11 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Note</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="note">Note</label>
+            <textarea class="form-control" id="note" name="task_note" rows="3">{{old('task_note')}}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{{$submitText}}</button>
     </form>
 </div>
 <br>

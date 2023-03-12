@@ -21,4 +21,10 @@ Route::get('/', [HomeController::class, 'index'])->name('/');
 
 // Data create route
 Route::get('data/create', [TodoController::class, 'create'])->name('data.create');
-Route::get('data/store', [TodoController::class, 'store'])->name('data.store');
+Route::post('data/store', [TodoController::class, 'store'])->name('data.store');
+
+// data delete route 
+Route::get('data/delete/{id}', [TodoController::class, 'destroy'])->name('data.delete');
+
+// data update
+Route::get('data/update/{id}', [TodoController::class, 'update'])->name('data.update');
