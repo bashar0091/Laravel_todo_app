@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Data show Page Route
+Route::get('/', [HomeController::class, 'index'])->name('/');
+
+// Data create route
+Route::get('data/create', [TodoController::class, 'create'])->name('data.create');
+Route::get('data/store', [TodoController::class, 'store'])->name('data.store');
