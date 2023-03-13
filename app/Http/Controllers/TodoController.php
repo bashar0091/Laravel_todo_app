@@ -10,11 +10,30 @@ class TodoController extends Controller
     public function create() {
         $title = 'Create New Todo';
         $submitText = 'Create';
+        $url = 'data/store';
 
         $taskName = old('task_name');
         $cuName = old('task_cuName');
+        $dueDate = old('task_due');
+        $status = 'disabled';
 
-        $data = compact('taskName', 'cuName', 'title', 'submitText');
+        $catWp = old('task_category') == 'wp' ? 'selected' : '';
+        $catLara = old('task_category') == 'laravel' ? 'selected' : '';
+        $catMern = old('task_category') == 'mern' ? 'selected' : '';
+
+        $assignTommy = old('task_assign') == 'tommy' ? 'selected' : '';
+        $assignBobby = old('task_assign') == 'bobby' ? 'selected' : '';
+        $assignYonny = old('task_assign') == 'yonny' ? 'selected' : '';
+
+        $priorityLow = old('task_priority') == 'low' ? 'selected' : '';
+        $priorityMedium = old('task_priority') == 'medium' ? 'selected' : '';
+        $priorityHigh = old('task_priority') == 'high' ? 'selected' : '';
+
+        $mediaSourceWapp = old('task_mediaSource') == 'wapp' ? 'selected' : '';
+        $mediaSourceLkd = old('task_mediaSource') == 'linkedin' ? 'selected' : '';
+        $mediaSourceSkp = old('task_mediaSource') == 'skype' ? 'selected' : '';
+
+        $data = compact('url', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate', 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh', 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp');
         return view('todoCreate')->with($data);
     }
 
@@ -66,14 +85,49 @@ class TodoController extends Controller
         } else {
             $title = 'Update Data';
             $submitText = 'Update';
+            $url = 'data/update-store' . '/' . $id;
 
             $taskName = $todoDel->task_name;
             $cuName = $todoDel->task_cuName;
+            $dueDate = $todoDel->task_due;
+            $status = '';
+
+            $catWp = $todoDel->task_category == 'wp' ? 'selected' : '';
+            $catLara = $todoDel->task_category == 'laravel' ? 'selected' : '';
+            $catMern = $todoDel->task_category == 'mern' ? 'selected' : '';
             
-            $data = compact('taskName', 'cuName', 'title', 'submitText');
+            $assignTommy = $todoDel->task_assign == 'tommy' ? 'selected' : '';
+            $assignBobby = $todoDel->task_assign == 'bobby' ? 'selected' : '';
+            $assignYonny = $todoDel->task_assign == 'yonny' ? 'selected' : '';
+
+            $priorityLow = $todoDel->task_priority == 'low' ? 'selected' : '';
+            $priorityMedium = $todoDel->task_priority == 'medium' ? 'selected' : '';
+            $priorityHigh = $todoDel->task_priority == 'high' ? 'selected' : '';
+
+            $mediaSourceWapp = $todoDel->task_mediaSource == 'wapp' ? 'selected' : '';
+            $mediaSourceLkd = $todoDel->task_mediaSource == 'linkedin' ? 'selected' : '';
+            $mediaSourceSkp = $todoDel->task_mediaSource == 'skype' ? 'selected' : '';
+            
+            $data = compact('url', 'todoDel', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate' , 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh' , 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp');
 
             return view('todoCreate')->with($data);
         }
+    }
+    
+    public function update_store($id, Request $request) {
+        $todoUpdate = Todo::find($id);
+
+        $todoUpdate->task_name = $request->task_name;
+        $todoUpdate->task_category = $request->task_category;
+        $todoUpdate->task_status = $request->task_status;
+        $todoUpdate->task_assign = $request->task_assign;
+        $todoUpdate->task_priority = $request->task_priority;
+        $todoUpdate->task_due = $request->task_due;
+        $todoUpdate->task_cuName = $request->task_cuName;
+        $todoUpdate->task_mediaSource = $request->task_mediaSource;
+        $todoUpdate->save();
+
+        return redirect('/');
     }
 
 }

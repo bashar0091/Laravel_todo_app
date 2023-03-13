@@ -8,6 +8,7 @@
     <table class="table table-bordered  ">
         <thead class="thead-light">
           <tr>
+            <th scope="col">#</th>
             <th scope="col">ID</th>
             <th scope="col">Task Name</th>
             <th scope="col">Category</th>
@@ -23,8 +24,17 @@
           </tr>
         </thead>
         <tbody>
+          @php
+          $i = 0;
+          @endphp
+
           @foreach( $todoView as $todo)
+
+          @php
+          $i++;
+          @endphp
           <tr>
+            <th scope="row">{{$i}}</th>
             <th scope="row">{{$todo->id}}</th>
             <th>{{$todo->task_name}}</th>
             <td>{{$todo->task_category}}</td>

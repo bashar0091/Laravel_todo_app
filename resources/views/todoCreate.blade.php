@@ -5,7 +5,7 @@
 <div class="container">
     <h2 class="text-center">{{$title}}</h2>
 
-    <form action="{{route('data.store')}}" method="post">
+    <form action="{{url($url)}}" method="post">
         @csrf
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -19,9 +19,9 @@
             <label for="category">Category *</label>
             <select class="custom-select" id="category" name="task_category">
                 <option value="">Select Category</option>
-                <option value="wp" {{old('task_category') == 'wp' ? 'selected' : ''}}>Wordpress</option>
-                <option value="laravel" {{old('task_category') == 'laravel' ? 'selected' : ''}}>Laravel</option>
-                <option value="mern" {{old('task_category') == 'mern' ? 'selected' : ''}}>MERN</option>
+                <option value="wp" {{$catWp}}>Wordpress</option>
+                <option value="laravel" {{$catLara}}>Laravel</option>
+                <option value="mern" {{$catMern}}>MERN</option>
             </select>
             @error('task_category')
                 <span class="text-danger">{{$message}}</span>
@@ -34,8 +34,8 @@
             <label for="status">Status *</label>
             <select class="custom-select" id="status" name="task_status">
                 <option value="ongoing" selected>Ongoing</option>
-                <option value="working" disabled>Working</option>
-                <option value="complete" disabled>Complete</option>
+                <option value="working" {{$status}}>Working</option>
+                <option value="complete" {{$status}}>Complete</option>
             </select>
             @error('task_status')
                 <span class="text-danger">{{$message}}</span>
@@ -45,9 +45,9 @@
             <label for="assign">Assigned *</label>
             <select class="custom-select" id="assign" name="task_assign">
                 <option value="">Select Member</option>
-                <option value="tommy" {{old('task_assign') == 'tommy' ? 'selected' : ''}}>Tommy</option>
-                <option value="bobby" {{old('task_assign') == 'bobby' ? 'selected' : ''}}>Bobby</option>
-                <option value="yonny" {{old('task_assign') == 'yonny' ? 'selected' : ''}}>Yonny</option>
+                <option value="tommy" {{$assignTommy}}>Tommy</option>
+                <option value="bobby" {{$assignBobby}}>Bobby</option>
+                <option value="yonny" {{$assignYonny}}>Yonny</option>
             </select>
             @error('task_assign')
                 <span class="text-danger">{{$message}}</span>
@@ -59,9 +59,9 @@
           <div class="form-group col-md-6">
             <label for="priority">Priority *</label>
             <select class="custom-select" id="priority" name="task_priority">
-                <option value="low" {{old('task_priority') == 'low' ? 'selected' : ''}}>Low</option>
-                <option value="medium" {{old('task_priority') == 'medium' ? 'selected' : ''}}>Medium</option>
-                <option value="high" {{old('task_priority') == 'high' ? 'selected' : ''}}>High</option>
+                <option value="low" {{$priorityLow}}>Low</option>
+                <option value="medium" {{$priorityMedium}}>Medium</option>
+                <option value="high" {{$priorityHigh}}>High</option>
             </select>
             @error('task_priority')
                 <span class="text-danger">{{$message}}</span>
@@ -70,7 +70,7 @@
 
           <div class="form-group col-md-6">
             <label for="dueDate">Due Date *</label>
-            <input type="date" class="form-control" id="dueDate" value="{{old('task_due')}}" name="task_due">
+            <input type="date" class="form-control" id="dueDate" value="{{$dueDate}}" name="task_due">
             @error('task_due')
                 <span class="text-danger">{{$message}}</span>
             @enderror
@@ -89,9 +89,9 @@
             <label for="mediaSource">Media Source *</label>
             <select class="custom-select" id="mediaSource" name="task_mediaSource">
                 <option value="">Select Media Source</option>
-                <option value="wapp" {{old('task_mediaSource') == 'wapp' ? 'selected' : ''}}>Whatsapp</option>
-                <option value="linkedin" {{old('task_mediaSource') == 'linkedin' ? 'selected' : ''}}>Linkedin</option>
-                <option value="skype" {{old('task_mediaSource') == 'skype' ? 'selected' : ''}}>Skype</option>
+                <option value="wapp" {{$mediaSourceWapp}}>Whatsapp</option>
+                <option value="linkedin" {{$mediaSourceLkd}}>Linkedin</option>
+                <option value="skype" {{$mediaSourceSkp}}>Skype</option>
             </select>
 
             @error('task_mediaSource')

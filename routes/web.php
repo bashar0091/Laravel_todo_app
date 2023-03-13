@@ -28,3 +28,4 @@ Route::get('data/delete/{id}', [TodoController::class, 'destroy'])->name('data.d
 
 // data update
 Route::get('data/update/{id}', [TodoController::class, 'update'])->name('data.update');
+Route::post('data/update-store/{id}', [TodoController::class, 'update_store'])->name('data.update-store');
