@@ -33,9 +33,9 @@
           <div class="form-group col-md-6">
             <label for="status">Status *</label>
             <select class="custom-select" id="status" name="task_status">
-                <option value="ongoing" selected>Ongoing</option>
-                <option value="working" {{$status}}>Working</option>
-                <option value="complete" {{$status}}>Complete</option>
+                <option value="ongoing" {{$statusOngoing}} >Ongoing</option>
+                <option value="working" {{$statusWorking}} {{$status}}>Working</option>
+                <option value="complete" {{$statusComplete}} {{$status}}>Complete</option>
             </select>
             @error('task_status')
                 <span class="text-danger">{{$message}}</span>

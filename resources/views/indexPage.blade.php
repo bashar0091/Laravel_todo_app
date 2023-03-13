@@ -9,13 +9,12 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">ID</th>
+            {{-- <th scope="col">ID</th> --}}
             <th scope="col">Task Name</th>
             <th scope="col">Category</th>
             <th scope="col">Status</th>
             <th scope="col">Assigned</th>
             <th scope="col">Priority</th>
-            <th scope="col">Start Date</th>
             <th scope="col">Due Date</th>
             <th scope="col">Customer Name</th>
             <th scope="col">Media Source</th>
@@ -32,16 +31,34 @@
 
           @php
           $i++;
+
+          $taskStatus = $todo->task_status;
+          $taskPriority = $todo->task_priority;
           @endphp
           <tr>
             <th scope="row">{{$i}}</th>
-            <th scope="row">{{$todo->id}}</th>
+            {{-- <th scope="row">{{$todo->id}}</th> --}}
             <th>{{$todo->task_name}}</th>
             <td>{{$todo->task_category}}</td>
-            <td>{{$todo->task_status}}</td>
+            <td>
+              @if($taskStatus == 'ongoing') 
+                <span class="bg-danger text-white p-1">Ongoing</span>
+              @elseif($taskStatus == 'working')
+                <span class="bg-info text-white p-1">Working</span>
+              @else
+                <span class="bg-success text-white p-1">Complete</span>
+              @endif
+            </td>
             <td>{{$todo->task_assign}}</td>
-            <td>{{$todo->task_priority}}</td>
-            <td>{{$todo->created_at}}</td>
+            <td>
+              @if($taskPriority == 'high') 
+                <span class="bg-danger text-white p-1">High</span>
+              @elseif($taskPriority == 'medium')
+                <span class="bg-warning text-dark p-1">Medium</span>
+              @else
+                <span class="bg-dark text-white p-1">Low</span>
+              @endif  
+            </td>
             <td>{{$todo->task_due}}</td>
             <td>{{$todo->task_cuName}}</td>
             <td>{{$todo->task_mediaSource}}</td>

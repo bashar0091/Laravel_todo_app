@@ -33,7 +33,11 @@ class TodoController extends Controller
         $mediaSourceLkd = old('task_mediaSource') == 'linkedin' ? 'selected' : '';
         $mediaSourceSkp = old('task_mediaSource') == 'skype' ? 'selected' : '';
 
-        $data = compact('url', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate', 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh', 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp');
+        $statusOngoing = 'selected';
+        $statusWorking = '';
+        $statusComplete = '';
+
+        $data = compact('url', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate', 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh', 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp', 'statusOngoing', 'statusWorking', 'statusComplete' );
         return view('todoCreate')->with($data);
     }
 
@@ -107,8 +111,12 @@ class TodoController extends Controller
             $mediaSourceWapp = $todoDel->task_mediaSource == 'wapp' ? 'selected' : '';
             $mediaSourceLkd = $todoDel->task_mediaSource == 'linkedin' ? 'selected' : '';
             $mediaSourceSkp = $todoDel->task_mediaSource == 'skype' ? 'selected' : '';
+
+            $statusOngoing = $todoDel->task_status == 'ongoing' ? 'selected' : '';
+            $statusWorking = $todoDel->task_status == 'working' ? 'selected' : '';
+            $statusComplete = $todoDel->task_status == 'complete' ? 'selected' : '';
             
-            $data = compact('url', 'todoDel', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate' , 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh' , 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp');
+            $data = compact('url', 'todoDel', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate' , 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh' , 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp', 'statusOngoing', 'statusWorking', 'statusComplete');
 
             return view('todoCreate')->with($data);
         }
