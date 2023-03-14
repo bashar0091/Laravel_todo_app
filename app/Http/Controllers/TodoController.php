@@ -16,6 +16,7 @@ class TodoController extends Controller
         $cuName = old('task_cuName');
         $dueDate = old('task_due');
         $status = 'disabled';
+        $taskNote = old('task_note');
 
         $catWp = old('task_category') == 'wp' ? 'selected' : '';
         $catLara = old('task_category') == 'laravel' ? 'selected' : '';
@@ -37,7 +38,7 @@ class TodoController extends Controller
         $statusWorking = '';
         $statusComplete = '';
 
-        $data = compact('url', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate', 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh', 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp', 'statusOngoing', 'statusWorking', 'statusComplete' );
+        $data = compact('url', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate', 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh', 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp', 'statusOngoing', 'statusWorking', 'statusComplete', 'taskNote' );
         return view('todoCreate')->with($data);
     }
 
@@ -66,6 +67,7 @@ class TodoController extends Controller
         $todoSave->task_due = $request->task_due;
         $todoSave->task_cuName = $request->task_cuName;
         $todoSave->task_mediaSource = $request->task_mediaSource;
+        $todoSave->task_notes = $request->task_note;
         $todoSave->save();
 
         return redirect('/');
@@ -94,6 +96,7 @@ class TodoController extends Controller
             $taskName = $todoDel->task_name;
             $cuName = $todoDel->task_cuName;
             $dueDate = $todoDel->task_due;
+            $taskNote = $todoDel->task_notes;
             $status = '';
 
             $catWp = $todoDel->task_category == 'wp' ? 'selected' : '';
@@ -116,7 +119,7 @@ class TodoController extends Controller
             $statusWorking = $todoDel->task_status == 'working' ? 'selected' : '';
             $statusComplete = $todoDel->task_status == 'complete' ? 'selected' : '';
             
-            $data = compact('url', 'todoDel', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate' , 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh' , 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp', 'statusOngoing', 'statusWorking', 'statusComplete');
+            $data = compact('url', 'todoDel', 'taskName', 'cuName', 'title', 'submitText', 'status', 'dueDate' , 'catWp', 'catLara', 'catMern', 'assignTommy', 'assignBobby', 'assignYonny', 'priorityLow', 'priorityMedium', 'priorityHigh' , 'mediaSourceWapp', 'mediaSourceLkd', 'mediaSourceSkp', 'statusOngoing', 'statusWorking', 'statusComplete', 'taskNote');
 
             return view('todoCreate')->with($data);
         }
@@ -133,6 +136,7 @@ class TodoController extends Controller
         $todoUpdate->task_due = $request->task_due;
         $todoUpdate->task_cuName = $request->task_cuName;
         $todoUpdate->task_mediaSource = $request->task_mediaSource;
+        $todoUpdate->task_notes = $request->task_note;
         $todoUpdate->save();
 
         return redirect('/');

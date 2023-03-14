@@ -34,6 +34,7 @@
 
           $taskStatus = $todo->task_status;
           $taskPriority = $todo->task_priority;
+          $taskNotes = $todo->task_notes
           @endphp
           <tr>
             <th scope="row">{{$i}}</th>
@@ -62,7 +63,13 @@
             <td>{{$todo->task_due}}</td>
             <td>{{$todo->task_cuName}}</td>
             <td>{{$todo->task_mediaSource}}</td>
-            <td>N/A</td>
+            <td>
+              @if($taskNotes)
+                {{$taskNotes}}
+              @else
+                N/A
+              @endif
+            </td>
             <td>
                 <a href="{{route('data.update', ['id' => $todo->id])}}">Edit</a>
                 <a href="{{route('data.delete', ['id' => $todo->id])}}">Delete</a>

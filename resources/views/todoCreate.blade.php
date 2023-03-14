@@ -102,7 +102,7 @@
 
         <div class="form-group">
             <label for="note">Note</label>
-            <textarea class="form-control" id="note" name="task_note" rows="3">{{old('task_note')}}</textarea>
+            <textarea class="form-control" id="note" name="task_note" rows="3">{{$taskNote}}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">{{$submitText}}</button>

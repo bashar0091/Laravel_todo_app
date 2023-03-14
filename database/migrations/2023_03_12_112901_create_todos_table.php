@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('task_due');
             $table->string('task_cuName');
             $table->string('task_mediaSource');
+            $table->string('task_notes')->nullable();
             $table->timestamps();
         });
     }
