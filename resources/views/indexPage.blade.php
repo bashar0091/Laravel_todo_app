@@ -71,6 +71,7 @@
               @endif
             </td>
             <td>
+                <a href="{{route('view', ['id' => $todo->id])}}">View</a>
                 <a href="{{route('data.update', ['id' => $todo->id])}}">Edit</a>
                 <a href="{{route('data.delete', ['id' => $todo->id])}}">Delete</a>
             </td>

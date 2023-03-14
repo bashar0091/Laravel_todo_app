@@ -105,6 +105,15 @@
             <textarea class="form-control" id="note" name="task_note" rows="3">{{$taskNote}}</textarea>
         </div>
 
+        <div class="form-group">
+          <label for="description">Description * </label>
+          <textarea id="description" name="task_des">{{$taskDes}}</textarea>
+
+          @error('task_des')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
+
         <button type="submit" class="btn btn-primary">{{$submitText}}</button>
     </form>
 </div>

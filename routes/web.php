@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SingleViewController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,6 @@ Route::get('data/delete/{id}', [TodoController::class, 'destroy'])->name('data.d
 // data update
 Route::get('data/update/{id}', [TodoController::class, 'update'])->name('data.update');
 Route::post('data/update-store/{id}', [TodoController::class, 'update_store'])->name('data.update-store');
+
+// single page view route 
+Route::get('/view/{id}', [SingleViewController::class, 'index'])->name('view');
